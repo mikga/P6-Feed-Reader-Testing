@@ -22,7 +22,11 @@ $(function() {
      * page?
      */
     it('should be defined', function() {
+
+      // The allFeeds variable should be defined
       expect(allFeeds).toBeDefined();
+
+      // The allFeeds variable should not be empty
       expect(allFeeds.length).not.toBe(0);
     });
 
@@ -32,7 +36,11 @@ $(function() {
      */
     it('should contain objects with a URL field', function() {
       for (var i = 0, len = allFeeds.length; i < len; i++){
+
+        // The url field in an allFeeds object should be defined
         expect(allFeeds[i].url).toBeDefined();
+
+        // The url field in an allFeeds object should not be empty
         expect(allFeeds[i].url.length).not.toBe(0);
       }
 
@@ -44,12 +52,14 @@ $(function() {
      */
     it('should contain objects with a name field', function() {
       for (var i = 0, len = allFeeds.length; i < len; i++){
+
+       // The name field in an allFeeds object should be defined
         expect(allFeeds[i].name).toBeDefined();
+
+        // The name field in an allFeeds object should not be empty
         expect(allFeeds[i].name.length).not.toBe(0);
       }
-
     });
-
   });
 
 
@@ -60,6 +70,8 @@ $(function() {
         menuIcon;
 
     beforeEach(function() {
+
+      // Obtain the HTML elements
       body = $('body');
       menuIcon = $('.menu-icon-link');
     });
@@ -70,7 +82,11 @@ $(function() {
    * hiding/showing of the menu element.
    */
     it('should be hidden by default', function() {
+
+      // The body element should be defined
       expect(body).toBeDefined();
+
+      // The body element should have a class menu-hidden
       expect(body.attr('class')).toContain("menu-hidden");
     });
 
@@ -84,17 +100,21 @@ $(function() {
 
       // Click the menu icon
       menuIcon.click();
+
+      // The body element should not have the class menu-hidden
       expect(body.attr('class')).not.toContain("menu-hidden");
 
       // Click the menu icon again
       menuIcon.click();
+
+      // The body element should have the class menu-hidden
       expect(body.attr('class')).toContain("menu-hidden");
 
     });
 
   });
 
-  /* A new test suite named "Initial Entries" */
+  /* Test suite named "Initial Entries" */
   describe('Initial Entries', function() {
 
     var elem;
@@ -105,17 +125,23 @@ $(function() {
    * the use of Jasmine's beforeEach and asynchronous done() function.
    */
     beforeEach(function(done) {
+
+      // Load the first feed
       loadFeed(0, done);
     });
 
     it('should contain at least one .entry element', function() {
+
+      // Obtain the entry elements
       elem = $('.entry');
+
+      // The entry elements should not be empty
       expect(elem.length).toBeGreaterThan(0);
     });
 
   });
 
-  /* Anew test suite named "New Feed Selection" */
+  /* Test suite named "New Feed Selection" */
   describe('New Feed Selection', function() {
 
     var title1,
@@ -123,11 +149,13 @@ $(function() {
         entries1,
         entries2;
 
-    /* TODO: Write a test that ensures when a new feed is loaded
+    /* Test that ensures when a new feed is loaded
      * by the loadFeed function that the content actually changes.
      * Remember, loadFeed() is asynchronous.
      */
     beforeEach(function(done) {
+
+      // Obtain the HTML elements for the first feed
       title1 = $('.header-title').text();
       entries1 = $('.entry h2').text();
 
@@ -136,13 +164,15 @@ $(function() {
     });
 
     it('should change the content', function() {
+
+      // Obtain the HTML elements for the second feed
       title2 = $('.header-title').text();
       entries2 = $('.entry h2').text();
+
+      // The HTML elements for the first feed and the second feed should not be the same
       expect(title1).not.toEqual(title2);
       expect(entries1).not.toEqual(entries2);
     });
-
-
   });
 
 }());
